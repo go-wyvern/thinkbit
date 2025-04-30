@@ -1,0 +1,151 @@
+{
+  "name": "thinkbit",
+  "displayName": "ThinkBit AI",
+  "version": "1.0.0",
+  "publisher": "go-wyvern",
+  "description": "AI-powered coding assistant that helps you write code faster and smarter",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Machine Learning",
+    "Snippets",
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "thinkbit.enable",
+        "title": "Enable ThinkBit"
+      },
+      {
+        "command": "thinkbit.disable",
+        "title": "Disable ThinkBit"
+      },
+      {
+        "command": "thinkbit.showSuggestions",
+        "title": "Show ThinkBit Suggestions"
+      },
+      {
+        "command": "thinkbit.openSettings",
+        "title": "ThinkBit: Open Settings"
+      },
+      {
+        "command": "thinkbit.showSidebar",
+        "title": "ThinkBit: Show Sidebar",
+        "icon": "$(comments)"
+      }
+    ],
+    "configuration": {
+      "title": "ThinkBit",
+      "properties": {
+        "thinkbit.enabled": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable or disable ThinkBit"
+        },
+        "thinkbit.apiKey": {
+          "type": "string",
+          "description": "API key for the AI model"
+        },
+        "thinkbit.apiEndpoint": {
+          "type": "string",
+          "description": "API endpoint for the AI model (optional)"
+        },
+        "thinkbit.model": {
+          "type": "string",
+          "default": "gpt-4",
+          "description": "Model to use for AI completions"
+        },
+        "thinkbit.maxTokens": {
+          "type": "number",
+          "default": 1024,
+          "description": "Maximum number of tokens to generate"
+        },
+        "thinkbit.temperature": {
+          "type": "number",
+          "default": 0.7,
+          "description": "Temperature for code completion (0-1)"
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "thinkbit-sidebar",
+          "title": "ThinkBit",
+          "icon": "$(lightbulb)"
+        }
+      ]
+    },
+    "views": {
+      "thinkbit-sidebar": [
+        {
+          "id": "thinkbit-dashboard",
+          "name": "Dashboard"
+        },
+        {
+          "id": "thinkbit-settings",
+          "name": "Settings"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "thinkbit-dashboard",
+        "contents": "Welcome to ThinkBit!\n[Enable ThinkBit](command:thinkbit.enable)\n[Configure Settings](command:thinkbit.openSettings)"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "thinkbit.showSuggestions",
+          "group": "ThinkBit",
+          "when": "editorTextFocus && thinkbitEnabled"
+        }
+      ],
+      "statusBar/remoteIndicator": [
+        {
+          "command": "thinkbit.showSidebar",
+          "when": "thinkbitEnabled"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "thinkbit.showSuggestions",
+        "key": "ctrl+space",
+        "mac": "cmd+space",
+        "when": "editorTextFocus && thinkbitEnabled"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ai",
+    "code completion",
+    "programming",
+    "machine learning",
+    "assistant"
+  ],
+  "author": "Go Wyvern",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.15.3",
+    "@types/vscode": "^1.99.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.5.0"
+  }
+}
