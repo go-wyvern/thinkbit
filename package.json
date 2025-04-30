@@ -36,6 +36,10 @@
         "title": "ThinkBit: Open Settings"
       },
       {
+        "command": "thinkbit.refreshSidebar ",
+        "title": "ThinkBit: Refresh Sidebar"
+      },
+      {
         "command": "thinkbit.showSidebar",
         "title": "ThinkBit: Show Sidebar",
         "icon": "$(comments)"
@@ -86,18 +90,15 @@
     "views": {
       "thinkbit-sidebar": [
         {
-          "id": "thinkbit-dashboard",
-          "name": "Dashboard"
-        },
-        {
-          "id": "thinkbit-settings",
-          "name": "Settings"
+          "type" :"webview",
+          "id": "thinkbit.SidebarProvider",
+          "name": ""
         }
       ]
     },
     "viewsWelcome": [
       {
-        "view": "thinkbit-dashboard",
+        "view": "thinkbit.SidebarProvider",
         "contents": "Welcome to ThinkBit!\n[Enable ThinkBit](command:thinkbit.enable)\n[Configure Settings](command:thinkbit.openSettings)"
       }
     ],
@@ -132,7 +133,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "ai",
+    "copilot",
     "code completion",
     "programming",
     "machine learning",
